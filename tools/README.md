@@ -2,7 +2,7 @@
 
 ## Extractor
 
-The extractor can extract game assets from AGG archives
+The extractor can extract game assets from Heroes 2 AGG archives
 
 ### Benchmark
 
