@@ -6,7 +6,8 @@ The extractor can extract game assets from Heroes 2 AGG archives.
 
 ### Benchmark
 
-Here's a comparison extracting the the `HEROES2.AGG` and `HEROES2X.AGG` archives.
+Here's a comparison extracting the the `HEROES2.AGG` and `HEROES2X.AGG` archives on my late
+2013 Retina Macbook Pro (2.4Ghz Intel Core i5).
 
  * `HEROES2.AGG`: 1434 assets
  * `HEROES2X.AGG`: 52 assets
