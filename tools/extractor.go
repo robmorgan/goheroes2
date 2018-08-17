@@ -34,17 +34,19 @@ func main() {
 
 	flag.Parse()
 
-	if flag.NArg() != 2 {
-		fmt.Println("Please specify the location of an AGG to extract and the output dir")
+	if flag.NArg() != 1 {
+		fmt.Println("Please specify the location of an AGG to extract")
 		return
 	}
-
 	aggFilename := flag.Arg(0)
 	fmt.Printf("Found file: %s\n", aggFilename)
 
-	outputDir := flag.Arg(1)
+	outputDir := strings.TrimSuffix(aggFilename, filepath.Ext(aggFilename))
 	if _, err := os.Stat(outputDir); os.IsNotExist(err) {
-		panic(err)
+		err2 := os.Mkdir(outputDir, 0700)
+		if err2 != nil {
+			panic(err2)
+		}
 	}
 	fmt.Printf("Output Directory: %s\n", outputDir)
 
@@ -113,8 +115,6 @@ func main() {
 		total++
 	}
 
-	// TODO - create output dir if it doesnt exist
-
 	// Extract file data and write
 	// dont bother sorting the map to avoid random disk reads
 	// TODO - actually it turns out the maps are returning elements randomly
@@ -127,7 +127,7 @@ func main() {
 
 		// make sure deferred function calls are actually called to avoid too many open files
 		func() {
-			file, err := os.Create(fmt.Sprintf("output/%s", k)) // TODO - output dir is hardcoded right now
+			file, err := os.Create(fmt.Sprintf(outputDir+"/%s", k))
 			if err != nil {
 				panic(err)
 			}
