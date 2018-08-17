@@ -41,12 +41,12 @@ func main() {
 	aggFilename := flag.Arg(0)
 	fmt.Printf("Found file: %s\n", aggFilename)
 
-  outputDir := strings.TrimSuffix(aggFilename, filepath.Ext(aggFilename))
+	outputDir := strings.TrimSuffix(aggFilename, filepath.Ext(aggFilename))
 	if _, err := os.Stat(outputDir); os.IsNotExist(err) {
-    err2 := os.Mkdir(outputDir, 0700)
-    if err2 != nil {
-      panic(err2)
-    }
+		err2 := os.Mkdir(outputDir, 0700)
+		if err2 != nil {
+			panic(err2)
+		}
 	}
 	fmt.Printf("Output Directory: %s\n", outputDir)
 
@@ -127,7 +127,7 @@ func main() {
 
 		// make sure deferred function calls are actually called to avoid too many open files
 		func() {
-			file, err := os.Create(fmt.Sprintf(outputDir + "/%s", k))
+			file, err := os.Create(fmt.Sprintf(outputDir+"/%s", k))
 			if err != nil {
 				panic(err)
 			}
